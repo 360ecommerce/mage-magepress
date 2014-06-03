@@ -49,6 +49,12 @@ class Threesixty_Wordpress_Model_Catalog_Product_Api extends Mage_Catalog_Model_
         }
         $result = array();
         foreach ($collection as $product) {
+            try {
+                $image = Mage::helper('catalog/image')->init($product, 'small_image')->resize(220);
+            } catch( Exception $ex ) {
+                Mage::log( $ex->__toString() );
+            }
+
             $result[] = array(
                 'product_id'        => $product->getId(),
                 'sku'               => $product->getSku(),
@@ -59,7 +65,7 @@ class Threesixty_Wordpress_Model_Catalog_Product_Api extends Mage_Catalog_Model_
                 'special_price'     => $product->getSpecialPrice(),
                 'category_ids'      => $product->getCategoryIds(),
                 'website_ids'       => $product->getWebsiteIds(),
-                'image'             => $_imageUrl->__toString(),
+                'image'             => $image->__toString(),
             );
         }
         return $result;
