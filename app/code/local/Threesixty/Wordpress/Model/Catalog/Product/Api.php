@@ -50,7 +50,7 @@ class Threesixty_Wordpress_Model_Catalog_Product_Api extends Mage_Catalog_Model_
         $result = array();
         foreach ($collection as $product) {
             try {
-                $image = Mage::helper('catalog/image')->init($product, 'small_image')->resize(220);
+                $image = Mage::helper('catalog/image')->init($product, 'small_image');
             } catch( Exception $ex ) {
                 Mage::log( $ex->__toString() );
             }
@@ -62,6 +62,7 @@ class Threesixty_Wordpress_Model_Catalog_Product_Api extends Mage_Catalog_Model_
                 'set'               => $product->getAttributeSetId(),
                 'type'              => $product->getTypeId(),
                 'price'             => $product->getPrice(),
+                'url'               => rtrim( Mage::getUrl( $product->getUrlPath() ), '/' ),
                 'special_price'     => $product->getSpecialPrice(),
                 'category_ids'      => $product->getCategoryIds(),
                 'website_ids'       => $product->getWebsiteIds(),
