@@ -50,13 +50,16 @@ class Threesixty_Wordpress_Model_Catalog_Product_Api extends Mage_Catalog_Model_
         $result = array();
         foreach ($collection as $product) {
             $result[] = array(
-                'product_id' => $product->getId(),
-                'sku'        => $product->getSku(),
-                'name'       => $product->getName(),
-                'set'        => $product->getAttributeSetId(),
-                'type'       => $product->getTypeId(),
-                'category_ids' => $product->getCategoryIds(),
-                'website_ids'  => $product->getWebsiteIds()
+                'product_id'        => $product->getId(),
+                'sku'               => $product->getSku(),
+                'name'              => $product->getName(),
+                'set'               => $product->getAttributeSetId(),
+                'type'              => $product->getTypeId(),
+                'price'             => $product->getPrice(),
+                'special_price'     => $product->getSpecialPrice(),
+                'category_ids'      => $product->getCategoryIds(),
+                'website_ids'       => $product->getWebsiteIds(),
+                'image'             => $_imageUrl->__toString(),
             );
         }
         return $result;
