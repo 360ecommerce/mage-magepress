@@ -50,7 +50,7 @@ class Threesixty_Wordpress_Model_Catalog_Product_Api extends Mage_Catalog_Model_
         $result = array();
         foreach ($collection as $product) {
             try {
-                $image  = Mage::helper('catalog/image')->init($product, 'small_image');
+                $image  = Mage::helper('catalog/image')->init($product, 'image');
                 $url    = $product->getProductUrl();
             } catch( Exception $ex ) {
                 Mage::log( $ex->__toString() );
