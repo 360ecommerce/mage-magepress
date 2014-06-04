@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <wordpress translate="label" module="health2work">
+            <tab>fishpig</tab>
+            <groups>
+                <integration>
+                    <fields>
+                        <url>
+                            <label>Home URL</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>required-entry</validate>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </url>
+                    </fields>
+                </integration>
+            </groups>
+        </wordpress>
+    </sections>
+</config>
