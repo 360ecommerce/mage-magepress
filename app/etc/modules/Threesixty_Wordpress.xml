@@ -1,11 +1,11 @@
 <config>
     <modules>
-        <Threesixty_Wordpress>
+        <Threesixty_Magepress>
             <active>true</active>
-            <codePool>local</codePool>
+            <codePool>community</codePool>
             <depends>
             	<Fishpig_Wordpress />
             </depends>
-        </Threesixty_Wordpress>
+        </Threesixty_Magepress>
     </modules>
 </config>

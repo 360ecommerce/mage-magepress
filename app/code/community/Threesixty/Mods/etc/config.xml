@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <global>
+        <blocks>
+            <customer>              
+                <rewrite>
+                    <account_navigation>Threesixty_Mods_Customer_Block_Account_Navigation</account_navigation>
+                </rewrite>
+            </customer>
+        </blocks>
+    </global>
+</config>
