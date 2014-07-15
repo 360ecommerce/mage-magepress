@@ -38,5 +38,43 @@
                 </rewrite>
             </wordpress>
         </models>
+        <events>
+            <controller_action_postdispatch>
+                <observers>
+                    <magepress>
+                        <type>singleton</type>
+                        <class>Threesixty_Magepress_Model_Observer</class>
+                        <method>updateAllCookies</method>
+                    </magepress>
+                </observers>
+            </controller_action_postdispatch>
+            <checkout_cart_add_product_complete>
+                <observers>
+                    <magepress>
+                        <type>singleton</type>
+                        <class>Threesixty_Magepress_Model_Observer</class>
+                        <method>updateCartCookie</method>
+                    </magepress>
+                </observers>
+            </checkout_cart_add_product_complete>
+            <checkout_cart_update_item_complete>
+                <observers>
+                    <magepress>
+                        <type>singleton</type>
+                        <class>Threesixty_Magepress_Model_Observer</class>
+                        <method>updateCartCookie</method>
+                    </magepress>
+                </observers>
+            </checkout_cart_update_item_complete>
+            <customer_logout>
+                <observers>
+                    <magepress>
+                        <type>singleton</type>
+                        <class>Threesixty_Magepress_Model_Observer</class>
+                        <method>removeCustomerCookie</method>
+                    </magepress>
+                </observers>
+            </customer_logout>
+        </events>
     </global>
 </config>

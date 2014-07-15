@@ -20,7 +20,8 @@ class Threesixty_Magepress_Model_Catalog_Product_Api extends Mage_Catalog_Model_
         $collection = Mage::getModel('catalog/product')->getCollection()
             ->addStoreFilter($this->_getStoreId($store))
             ->addAttributeToSelect('name')
-            ->addAttributeToSelect('image');
+            ->addAttributeToSelect('image')
+            ->addAttributeToSelect('status');
 
         // Count
         if( isset( $filters['count'] ) ) {
@@ -45,6 +46,13 @@ class Threesixty_Magepress_Model_Catalog_Product_Api extends Mage_Catalog_Model_
             unset($filters['ids']);
         }
 
+        // Ability to add data
+        $attributes = array();
+        Mage::dispatchEvent(
+            'magepress_catalog_product_api_collection',
+            array( 'attributes' => &$attributes, 'collection' => &$collection )
+        );
+
         /** @var $apiHelper Mage_Api_Helper_Data */
         $apiHelper = Mage::helper('api');
         $filters = $apiHelper->parseFilters($filters, $this->_filtersMap);
@@ -55,6 +63,7 @@ class Threesixty_Magepress_Model_Catalog_Product_Api extends Mage_Catalog_Model_
         } catch (Mage_Core_Exception $e) {
             $this->_fault('filters_invalid', $e->getMessage());
         }
+
         $result = array();
         foreach ($collection as $product) {
             try {
@@ -64,7 +73,14 @@ class Threesixty_Magepress_Model_Catalog_Product_Api extends Mage_Catalog_Model_
                 Mage::log( $ex->__toString() );
             }
 
-            $result[] = array(
+            // Build array for given attributes
+            $return = array();
+            foreach( $attributes as $attribute ) {
+                $return[$attribute] = $product->getData($attribute);
+            }
+
+            // Set results
+            $result[] = array_merge( array(
                 'product_id'        => $product->getId(),
                 'sku'               => $product->getSku(),
                 'name'              => $product->getName(),
@@ -75,8 +91,8 @@ class Threesixty_Magepress_Model_Catalog_Product_Api extends Mage_Catalog_Model_
                 'special_price'     => $product->getSpecialPrice(),
                 'category_ids'      => $product->getCategoryIds(),
                 'website_ids'       => $product->getWebsiteIds(),
-                'image'             => $image->__toString(),
-            );
+                'image'             => $image->__toString()
+            ), $return );
         }
         return $result;
     }
