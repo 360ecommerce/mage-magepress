@@ -21,6 +21,12 @@
                     <category_api>Threesixty_Wordpress_Model_Catalog_Category_Api</category_api>
                 </rewrite>
             </catalog>
+            <wordpress>
+                <rewrite>
+                    <menu>Threesixty_Wordpress_Model_Menu</menu>
+                    <menu_item>Threesixty_Wordpress_Model_Menu_Item</menu_item>
+                </rewrite>
+            </wordpress>
         </models>
         <helpers>
             <threesixty>
