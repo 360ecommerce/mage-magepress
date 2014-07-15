@@ -1,6 +1,6 @@
 <?php
 
-class Threesixty_Wordpress_Model_Menu extends Fishpig_Wordpress_Model_Menu 
+class Threesixty_Magepress_Model_Menu extends Fishpig_Wordpress_Model_Menu 
 {
     /**
      * Inject links into the top navigation

@@ -6,7 +6,7 @@
  * @package    Mage_Catalog
  * @author     Magento Core Team <core@magentocommerce.com>
  */
-class Threesixty_Wordpress_Model_Catalog_Product_Api extends Mage_Catalog_Model_Product_Api
+class Threesixty_Magepress_Model_Catalog_Product_Api extends Mage_Catalog_Model_Product_Api
 {
     /**
      * Retrieve list of products with basic info (id, sku, type, set, name)
@@ -19,13 +19,21 @@ class Threesixty_Wordpress_Model_Catalog_Product_Api extends Mage_Catalog_Model_
     {
         $collection = Mage::getModel('catalog/product')->getCollection()
             ->addStoreFilter($this->_getStoreId($store))
-            ->addAttributeToSelect('name');
+            ->addAttributeToSelect('name')
+            ->addAttributeToSelect('image');
 
         // Count
         if( isset( $filters['count'] ) ) {
             $count = $filters['count'];
             $collection->setPageSize($count);
             unset($filters['count']);
+        }
+
+        // Category
+        if( isset( $filters['category'] ) ) {
+            $category = Mage::getModel('catalog/category')->load($filters['category']);
+            $collection->addCategoryFilter($category);
+            unset($filters['category']);
         }
 
          // IDs

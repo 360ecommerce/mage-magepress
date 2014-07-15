@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<config>
+    <modules>
+        <Threesixty_Magepress>
+            <version>0.1</version>
+        </Threesixty_Magepress>
+    </modules>
+    <global>
+        <blocks>
+            <magepress>
+                <class>Threesixty_Magepress_Block</class>
+            </magepress>
+            <wordpress>
+                <rewrite>
+                    <menu>Threesixty_Magepress_Block_Menu</menu>
+                </rewrite>
+            </wordpress>
+            <page>
+                <rewrite>
+                    <html_topmenu>Threesixty_Magepress_Block_Html_Topmenu</html_topmenu>
+                </rewrite>
+            </page>
+        </blocks>
+        <models>
+            <magepress>
+                <class>Threesixty_Magepress_Model</class>
+            </magepress>
+            <catalog>
+                <rewrite>
+                    <product_api>Threesixty_Magepress_Model_Catalog_Product_Api</product_api>
+                    <category_api>Threesixty_Magepress_Model_Catalog_Category_Api</category_api>
+                </rewrite>
+            </catalog>
+            <wordpress>
+                <rewrite>
+                    <menu>Threesixty_Magepress_Model_Menu</menu>
+                    <menu_item>Threesixty_Magepress_Model_Menu_Item</menu_item>
+                </rewrite>
+            </wordpress>
+        </models>
+    </global>
+</config>

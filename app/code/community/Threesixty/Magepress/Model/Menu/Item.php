@@ -1,6 +1,6 @@
 <?php
 
-class Threesixty_Wordpress_Model_Menu_Item extends Fishpig_Wordpress_Model_Menu_Item 
+class Threesixty_Magepress_Model_Menu_Item extends Fishpig_Wordpress_Model_Menu_Item 
 {
     public function getClasses()
     {
